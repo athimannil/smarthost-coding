@@ -7,7 +7,7 @@ import { Background } from "./components/Background";
 
 class App extends React.Component {
   render() {
-    return <Background/>
+    return <Background/>;
   }
 }
 
