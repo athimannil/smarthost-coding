@@ -4,8 +4,13 @@ const apiForPic = "https://pixabay.com/api/?key=5926034-701cedbed0d2d8e20edfb8b7
 
 export class Background extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = { i: 0 };
+  }
+
   componentWillMount() {
-    this.requestImageApi();
+    this.requestImageApi().then(this.updateImageState);
   }
 
   requestImageApi = () => {
@@ -15,16 +20,12 @@ export class Background extends React.Component {
               this.setState({
                 imageList: response.hits
               });
-            })
-            .then(
-              this.updateImageState
-            );
+            });
   };
 
   updateImageState =() =>{
-    console.log("===============================================");
     this.setState({
-        backImage: this.state.imageList[0].webformatURL
+        backImage: this.state.imageList[this.state.i].webformatURL
       });
   };
 
@@ -32,7 +33,7 @@ export class Background extends React.Component {
     return(
       <section
         className="quote-wrap"
-        style={{ backgroundImage: `url(${'https://pixabay.com/get/e830b80f21f6023ed95c4518b7494f94e577e1d104b0144195f4c07fa7efb2_640.jpg'})` }}
+        style={{ backgroundImage: `url(${this.state.backImage})` }}
       />
     )
   };
