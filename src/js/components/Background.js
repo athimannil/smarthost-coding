@@ -11,6 +11,7 @@ export class Background extends React.Component {
 
   componentWillMount() {
     this.requestImageApi().then(this.updateImageState);
+    setInterval(this.nextImage, 2000);
   }
 
   requestImageApi = () => {
@@ -24,9 +25,24 @@ export class Background extends React.Component {
   };
 
   updateImageState =() =>{
+    console.log('Am I here ?');
     this.setState({
         backImage: this.state.imageList[this.state.i].webformatURL
       });
+  };
+
+  nextImage = () => {
+    if (this.state.i == 200) {
+      this.setState({ i: 0 });
+    } else {
+      this.setState({ i: this.state.i + 1 });
+    }
+
+    this.updateImage();
+  };
+
+  updateImage = () => {
+    setTimeout(this.updateImageState, 500);
   };
 
   render(){
