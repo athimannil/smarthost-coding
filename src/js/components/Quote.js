@@ -1,6 +1,30 @@
 import React from "react";
+import fetchJsonp from 'fetch-jsonp';
 
 export class Quote extends React.Component {
+
+  componentDidMount() {
+    this.requestApi();
+  }
+
+  requestApi = () => {
+    fetchJsonp('https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=callback', {
+      jsonpCallback: "callback",
+      jsonpCallbackFunction: "callback"
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(
+        function (response) {
+          console.log(response);
+        }
+      )
+      .catch(function(ex) {
+        console.log("API call failed", ex);
+      });
+  };
+
   render() {
     return (
       <div className="quote-wrap">
