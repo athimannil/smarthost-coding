@@ -2,7 +2,7 @@ import React from "react";
 import fetchJsonp from 'fetch-jsonp';
 
 const urlForQuote = 'https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=callback';
-const qouteInterval = 5000;
+const qouteInterval = 600000;
 
 export class Quote extends React.Component {
 

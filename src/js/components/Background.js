@@ -2,6 +2,7 @@ import React from "react";
 import { Quote } from "./Quote";
 
 const apiForPic = "https://pixabay.com/api/?key=5926034-701cedbed0d2d8e20edfb8b7a&image_type=photos&category=nature&editors_choice=true&safesearch=true&per_page=200&order=latest&pretty=true&page=2";
+const imageChangeInterval = 600000;
 const styles = {
     transition: 'filter 0.5s linear'
 };
@@ -15,7 +16,7 @@ export class Background extends React.Component {
 
   componentWillMount() {
     this.requestImageApi().then(this.updateImageState);
-    setInterval(this.nextImage, 2000);
+    setInterval(this.nextImage, imageChangeInterval);
   }
 
   requestImageApi = () => {
@@ -29,7 +30,6 @@ export class Background extends React.Component {
   };
 
   updateImageState =() =>{
-    console.log('Am I here ?');
     this.setState({
         backImage: this.state.imageList[this.state.i].webformatURL
       });
