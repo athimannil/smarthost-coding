@@ -3,11 +3,11 @@ import "../scss/main.scss";
 import React from "react";
 import { render } from "react-dom";
 
-import { Quote} from './components/Quote';
+import { Background } from "./components/Background";
 
 class App extends React.Component {
   render() {
-    return <Quote/>
+    return <Background/>
   }
 }
 
