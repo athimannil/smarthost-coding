@@ -1,5 +1,7 @@
 import React from "react";
 
+const apiForPic = "https://pixabay.com/api/?key=5926034-701cedbed0d2d8e20edfb8b7a&image_type=photos&category=nature&editors_choice=true&safesearch=true&per_page=200&order=latest&pretty=true&page=2";
+
 export class Background extends React.Component {
 
   componentWillMount() {
@@ -7,11 +9,23 @@ export class Background extends React.Component {
   }
 
   requestImageApi = () => {
-    return fetch("https://pixabay.com/api/?key=5926034-701cedbed0d2d8e20edfb8b7a&image_type=photos&category=nature&editors_choice=true&safesearch=true&per_page=200&order=latest&pretty=true&page=2")
+    return fetch(apiForPic)
             .then(response => response.json())
             .then(response => {
-              console.log(response);
-            });
+              this.setState({
+                imageList: response.hits
+              });
+            })
+            .then(
+              this.updateImageState
+            );
+  };
+
+  updateImageState =() =>{
+    console.log("===============================================");
+    this.setState({
+        backImage: this.state.imageList[0].webformatURL
+      });
   };
 
   render(){
