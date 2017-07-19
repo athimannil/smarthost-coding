@@ -10,6 +10,9 @@ export class Quote extends React.Component {
 
   componentDidMount() {
     this.requestApi();
+    setInterval(() => {
+      this.requestApi();
+    }, 3000);
   }
 
   requestApi = () => {
