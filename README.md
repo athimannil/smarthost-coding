@@ -1,3 +1,12 @@
 Installation instruction
 ---
-```npm install```
+```
+npm install
+
+npm start
+
+```
+
+Distribution
+---
+`npm run build:prod`
