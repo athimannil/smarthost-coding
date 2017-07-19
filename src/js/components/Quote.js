@@ -3,6 +3,11 @@ import fetchJsonp from 'fetch-jsonp';
 
 export class Quote extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   componentDidMount() {
     this.requestApi();
   }
@@ -16,9 +21,12 @@ export class Quote extends React.Component {
         return response.json();
       })
       .then(
-        function (response) {
-          console.log(response);
-        }
+        function(json) {
+          this.setState({
+            text: json.quoteText,
+            author: json.quoteAuthor,
+          });
+        }.bind(this)
       )
       .catch(function(ex) {
         console.log("API call failed", ex);
@@ -29,8 +37,8 @@ export class Quote extends React.Component {
     return (
       <div className="quote-wrap">
         <blockquote className="">
-          <p className="quote">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <footer className="quote-author">Authout Name</footer>
+          <p className="quote">{this.state.text}</p>
+          <footer className="quote-author">{this.state.author}</footer>
         </blockquote>
       </div>
     );
