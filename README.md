@@ -1,0 +1,3 @@
+Installation instruction
+---
+```npm install```
