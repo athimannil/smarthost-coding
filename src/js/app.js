@@ -1,2 +1,12 @@
 import "../scss/main.scss";
-console.log("helo mate I am here");
+
+import React from "react";
+import { render } from "react-dom";
+
+class App extends React.Component {
+  render() {
+    return <Background />;
+  }
+}
+
+render(<App />, window.document.getElementById("myquote"));
