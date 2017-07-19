@@ -1,6 +1,9 @@
 import React from "react";
 import fetchJsonp from 'fetch-jsonp';
 
+const urlForQuote = 'https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=callback';
+const qouteInterval = 5000;
+
 export class Quote extends React.Component {
 
   constructor(props) {
@@ -12,11 +15,11 @@ export class Quote extends React.Component {
     this.requestApi();
     setInterval(() => {
       this.requestApi();
-    }, 3000);
+    }, qouteInterval);
   }
 
   requestApi = () => {
-    fetchJsonp('https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=callback', {
+    fetchJsonp(urlForQuote, {
       jsonpCallback: "callback",
       jsonpCallbackFunction: "callback"
     })
