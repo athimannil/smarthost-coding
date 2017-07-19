@@ -13,6 +13,6 @@ npm install
 npm start
 ```
 
-Distribution
+Release biuld
 --
 `npm run build:prod`
